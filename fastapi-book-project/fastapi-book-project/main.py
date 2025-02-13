@@ -18,12 +18,11 @@ app.add_middleware(
 
 app.include_router(api_router, prefix=settings.API_PREFIX)
 
-
 @app.get("/healthcheck")
 async def health_check():
     """Checks if server is active."""
     return {"status": "active"}
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))  
+    port = int(os.environ.get("PORT", 10000))  # This line is the issue!
     uvicorn.run(app, host="0.0.0.0", port=port)
