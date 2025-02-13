@@ -1,4 +1,4 @@
-name: FastAPI CI
+name: FastAPI CI/CD
 
 on:
   push:
@@ -32,3 +32,11 @@ jobs:
           source venv/bin/activate
           pytest
 
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    
+    steps:
+      - name: Trigger Render Deployment
+        run: curl -X POST "$RENDER_DEPLOY_HOOK_URL"
