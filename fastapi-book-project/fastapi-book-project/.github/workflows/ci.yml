@@ -21,11 +21,13 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install dependencies
-        run: |
-          python -m venv venv
-          source venv/bin/activate
-          pip install -r requirements.txt
+     - name: Install dependencies
+  run: |
+    python -m venv venv
+    source venv/bin/activate
+    pip install -r ./requirements.txt  # Ensure correct path
+  working-directory: fastapi-book-project  
+
 
       - name: Run tests
         run: |
